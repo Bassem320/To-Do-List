@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todolist_flutter_app/models/task_data.dart';
+import 'package:todolist_flutter_app/models/task_list_data.dart';
 
 class TaskTile extends StatefulWidget {
   final Task task;
@@ -26,6 +28,9 @@ class _TaskTileState extends State<TaskTile> {
           });
         },
       ),
+      onLongPress: (){
+        Provider.of<TaskListData>(context,listen: false).deleteTask(widget.task);
+      },
     );
   }
 }

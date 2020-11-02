@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todolist_flutter_app/models/task_data.dart';
+import 'package:todolist_flutter_app/models/task_list_data.dart';
 
 class AddTaskScreen extends StatefulWidget {
 
-  final Function addTaskCallback;
-  AddTaskScreen(this.addTaskCallback);
 
   @override
   _AddTaskScreenState createState() => _AddTaskScreenState();
@@ -45,9 +45,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
             ),
             SizedBox(height: 10.0,),
             FlatButton(onPressed: (){
-              var newTask = Task(name: newTaskText);
-              print(newTaskText);
-              widget.addTaskCallback(newTask);
+              Provider.of<TaskListData>(context,listen: false).addNewTask(Task(name: newTaskText));
               Navigator.pop(context);
             },
               color: Colors.lightBlueAccent,
