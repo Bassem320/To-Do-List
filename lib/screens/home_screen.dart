@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:todolist_flutter_app/models/task_data.dart';
 import 'package:todolist_flutter_app/widgets/task_list.dart';
 
 class HomeScreen extends StatelessWidget {
+  final List<Task> taskList;
+  HomeScreen({this.taskList});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,7 +39,7 @@ class HomeScreen extends StatelessWidget {
                       fontWeight: FontWeight.w700),
                 ),
                 Text(
-                  '12 Tasks',
+                  '${taskList.length} Tasks',
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w400,
@@ -58,7 +61,9 @@ class HomeScreen extends StatelessWidget {
                   topRight: Radius.circular(20.0),
                 ),
               ),
-              child: TaskList(),
+              child: TaskList(
+                taskList: taskList,
+              ),
             ),
           )
         ],

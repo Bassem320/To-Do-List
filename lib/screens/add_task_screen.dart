@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:todolist_flutter_app/models/task_data.dart';
 
-class AddTaskScreen extends StatelessWidget {
+class AddTaskScreen extends StatefulWidget {
 
+  final Function addTaskCallback;
+  AddTaskScreen(this.addTaskCallback);
 
+  @override
+  _AddTaskScreenState createState() => _AddTaskScreenState();
+}
+
+class _AddTaskScreenState extends State<AddTaskScreen> {
+  String newTaskText;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,10 +37,19 @@ class AddTaskScreen extends StatelessWidget {
               color: Colors.lightBlueAccent
             ),),
             TextField(
+              autofocus: true,
               decoration: InputDecoration(hintText: 'New Task'),
+              onChanged: (text){
+                newTaskText = text;
+              },
             ),
             SizedBox(height: 10.0,),
-            FlatButton(onPressed: (){},
+            FlatButton(onPressed: (){
+              var newTask = Task(name: newTaskText);
+              print(newTaskText);
+              widget.addTaskCallback(newTask);
+              Navigator.pop(context);
+            },
               color: Colors.lightBlueAccent,
                 child: Text('Add',
                     style: TextStyle(

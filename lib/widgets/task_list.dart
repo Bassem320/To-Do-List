@@ -4,11 +4,8 @@ import 'package:todolist_flutter_app/widgets/task_tile.dart';
 
 class TaskList extends StatelessWidget {
 
-  final List<Task> taskList = [
-    Task(name: 'get some milk'),
-    Task(name: 'go home'),
-    Task(name: 'send a message'),
-  ];
+  final List<Task> taskList;
+  TaskList({this.taskList});
 
   @override
   Widget build(BuildContext context) {
